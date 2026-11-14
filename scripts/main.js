@@ -13,6 +13,18 @@ const timeInput5 = document.getElementById("time5");
 let prValue = null;
 let times = [];
 
+prForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+});
+
+document.querySelectorAll("input").forEach((input) => {
+    input.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+            event.preventDefault();
+        }
+    });
+});
+
 prInput.addEventListener("input", () => {
     prValue = formatTimeField(prInput);
     console.log("PR Value:", prValue);

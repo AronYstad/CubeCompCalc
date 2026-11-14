@@ -47,12 +47,12 @@ h2{
     display: block;
     width: 20vmin;
     height: 5vmin;
-    font-size: 2em;
+    font-size: 3vmin;
 }
 
 #pr-input{
     display: inline-block;
     width: 20vmin;
     height: 5vmin;
-    font-size: 2em;
+    font-size: 3vmin;
 }
