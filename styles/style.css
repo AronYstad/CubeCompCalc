@@ -1,0 +1,16 @@
+body{
+    background-color: rgb(32, 32, 32);
+    color: white;
+}
+
+#homeButton{
+    position: absolute;
+    background-color: rgb(32,32,32);
+    color: white;
+    width: 10vmin;
+    height: 5vmin;
+}
+
+h1{
+    text-align:center
+}
