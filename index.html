@@ -5,9 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cube Competition Calculator</title>
     <link href="./styles/style.css" rel="stylesheet">
+    <script src="./scripts/main.js" defer></script>
 </head>
 <body>
-    <button id="homeButton">Home</button>
+    <button id="home-button" onclick="window.location.href='index.html'">Home</button>
     <h1>Cube Competition Calculator</h1>
+    <h2 id="top-h2">Select format:</h2>
+    <div class="format-buttons">
+        <button class="format-button" id="ao5-button">Average of 5</button>
+        <button class="format-button" id="mo3-button">Mean of 3</button>
+    </div>
+    <form id="pr-form" style="display:none;">
+        <input type="text" id="pr-input" name="pr-input" inputmode="numeric" required value="0.00">
+    </form>
+    <h2 id="times-h2" style="display:none;">Enter times:</h2>
+    <div id="times-container" style="display:none;">
+        <input type="text" class="time-input" id="time1" inputmode="numeric" required value="0.00">
+        <input type="text" class="time-input" id="time2" inputmode="numeric" required value="0.00">
+        <input type="text" class="time-input" id="time3" inputmode="numeric" required value="0.00">
+        <input type="text" class="time-input" id="time4" inputmode="numeric" required value="0.00">
+        <input type="text" class="time-input" id="time5" inputmode="numeric" required value="0.00">
 </body>
 </html>

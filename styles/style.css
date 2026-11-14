@@ -1,16 +1,58 @@
 body{
     background-color: rgb(32, 32, 32);
     color: white;
+    text-align: center;
 }
 
-#homeButton{
+h1{
+    font-size: 3em;
+}
+
+h2{
+    font-size: 2em;
+}
+
+#home-button{
     position: absolute;
+    top: 1vmin;
+    left: 1vmin;
     background-color: rgb(32,32,32);
     color: white;
     width: 10vmin;
     height: 5vmin;
 }
 
-h1{
-    text-align:center
+.format-buttons{
+    display: flex;
+    justify-content: center;
+    gap: 2vmin;
+}
+
+.format-button{
+    background-color: rgb(32,32,32);
+    color: white;
+    width: 20vmin;
+    height: 10vmin;
+    font-size: 2vmin;
+}
+
+#times-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1vmin;
+}
+
+.time-input{
+    display: block;
+    width: 20vmin;
+    height: 5vmin;
+    font-size: 2em;
+}
+
+#pr-input{
+    display: inline-block;
+    width: 20vmin;
+    height: 5vmin;
+    font-size: 2em;
 }
