@@ -24,15 +24,31 @@ let format = "";
 
 prForm.addEventListener("submit", (event) => {
     event.preventDefault();
+    focusNextInput(prForm);
 });
 
 document.querySelectorAll("input").forEach((input) => {
+    input.addEventListener("focus", () => {
+        input.setSelectionRange(input.value.length, input.value.length);
+    });
+
     input.addEventListener("keydown", (event) => {
         if (event.key === "Enter") {
             event.preventDefault();
+            focusNextInput(input);
         }
     });
 });
+
+function focusNextInput(currentInput) {
+    const visibleInputs = [...document.querySelectorAll("input")]
+        .filter((input) => !input.disabled && input.getClientRects().length > 0);
+    const currentIndex = visibleInputs.indexOf(currentInput);
+
+    if (currentIndex !== -1 && currentIndex < visibleInputs.length - 1) {
+        visibleInputs[currentIndex + 1].focus();
+    }
+}
 
 prInput.addEventListener("input", () => {
     prValue = formatTimeField(prInput);
