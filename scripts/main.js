@@ -180,6 +180,9 @@ function update() {
                 wpa = null;
                 const highestTwo = sortedTimes.slice(1, 3);
                 needToBeat = Math.round(prValue * 3 - highestTwo.reduce((sum, time) => sum + time, 0)) + 1;
+                if (needToBeat < sortedTimes[0]) {
+                    needToBeat = null;
+                }
             }
             else{
                 average = null;
