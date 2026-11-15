@@ -52,7 +52,10 @@ h2{
 #id-mode-button{
     background-color: rgb(32,32,32);
     color: white;
-    width: min(44rem, 100vw);
+    width: min(44rem, 90%);
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
     height: 10rem;
     font-size: 2rem;
     border: 1px solid white;
@@ -101,8 +104,8 @@ h2{
 }
 
 .event-button{
-    height: 3em;
-    font-size: 2em;
+    height: 7vw;
+    font-size: 2vw;
     background-color: rgb(32,32,32);
     color: white;
     border: 1px solid white;
