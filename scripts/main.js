@@ -45,6 +45,13 @@ logoutButton.addEventListener("click", () => {
     idInput.style.display = "block";
     idButton.style.display = "block";
     eventSelect.style.display = "none";
+    timesContainer.style.display = "none";
+    bpaH2.style.display = "none";
+    wpaH2.style.display = "none";
+    averageH2.style.display = "none";
+    needToBeatH2.style.display = "none";
+    timesH2.style.display = "none";
+    prForm.style.display = "none";
 });
 
 async function getPRs(){
@@ -99,6 +106,10 @@ document.getElementById("3bld").addEventListener("click", () => {
 
 document.getElementById("oh").addEventListener("click", () => {
     clickedEvent("333oh");
+});
+
+document.getElementById("clock").addEventListener("click", () =>{
+    clickedEvent("clock")
 });
 
 document.getElementById("mega").addEventListener("click", () => {
