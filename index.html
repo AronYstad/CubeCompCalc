@@ -9,8 +9,31 @@
 </head>
 <body>
     <button id="home-button" type="button" onclick="window.location.href='index.html'">Home</button>
+    <button id="logout-button" type="button">Change ID</button>
     <h1>Cube Competition Calculator</h1>
-    <h2 id="top-h2">Select format:</h2>
+    <button id="id-mode-button" type="button">Load PRs from WCA ID</button>
+    <h2 id="top-h2">or select format:</h2>
+
+    <div id="event-select" style="display:none;">
+        <button class="event-button" id="3x3">3x3</button>
+        <button class="event-button" id="2x2">2x2</button>
+        <button class="event-button" id="4x4">4x4</button>
+        <button class="event-button" id="5x5">5x5</button>
+        <button class="event-button" id="6x6">6x6</button>
+        <button class="event-button" id="7x7">7x7</button>
+        <button class="event-button" id="3bld">3BLD</button>
+        <button class="event-button" id="oh">OH</button>
+        <button class="event-button" id="clock">Clock</button>
+        <button class="event-button" id="mega">Megaminx</button>
+        <button class="event-button" id="pyra">Pyraminx</button>
+        <button class="event-button" id="skewb">Skewb</button>
+        <button class="event-button" id="squan">Square-1</button>
+        <button class="event-button" id="4bld">4BLD</button>
+        <button class="event-button" id="5bld">5BLD</button>
+    </div>
+
+    <input type="text" id="id-input" enterkeyhint="done" required style="display:none;">
+    <button id="id-button" style="display:none;">Submit</button>
     <div class="format-buttons">
         <button class="format-button" id="ao5-button">Average of 5</button>
         <button class="format-button" id="mo3-button">Mean of 3</button>

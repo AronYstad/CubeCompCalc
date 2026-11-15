@@ -14,6 +14,12 @@ const averageH2 = document.getElementById("average-h2");
 const bpaH2 = document.getElementById("bpa-h2");
 const wpaH2 = document.getElementById("wpa-h2");
 const needToBeatH2 = document.getElementById("need-to-beat-h2");
+const idModeButton = document.getElementById("id-mode-button");
+const idInput = document.getElementById("id-input");
+const idButton = document.getElementById("id-button");
+const eventSelect = document.getElementById("event-select");
+const logoutButton = document.getElementById("logout-button");
+let id = null;
 let prValue = null;
 let times = [];
 let bpa = null;
@@ -21,6 +27,159 @@ let wpa = null;
 let needToBeat = null;
 let average = null;
 let format = "";
+let prs = [];
+
+id = localStorage.getItem("id")
+
+if(id){
+    getPRs();
+}
+
+logoutButton.addEventListener("click", () => {
+    id = null;
+    localStorage.removeItem("id");
+    ao5Button.style.display = "none";
+    mo3Button.style.display = "none";
+    idModeButton.style.display = "none";
+    topH2.textContent = "Enter WCA ID:";
+    idInput.style.display = "block";
+    idButton.style.display = "block";
+    eventSelect.style.display = "none";
+});
+
+async function getPRs(){
+    try{
+        const response = await fetch("https://raw.githubusercontent.com/robiningelbrecht/wca-rest-api/refs/heads/v1/persons/"+id+".json");
+        if(!response.ok){
+          throw new Error("API request failed!");
+        }
+        const data = await response.json();
+        prs = data.rank.averages;
+    }
+    catch (error){
+        topH2.textContent = "An error has occured! Please enter your PR manually.";
+        prInput.readOnly = false;
+    }
+}
+
+function showEventList(){
+    idButton.style.display = "none";
+    idInput.style.display = "none";
+    eventSelect.style.display = "grid";
+    topH2.textContent = "Select event:";
+}
+
+document.getElementById("3x3").addEventListener("click", () => {
+    clickedEvent("333");
+});
+
+document.getElementById("2x2").addEventListener("click", () => {
+    clickedEvent("222");
+});
+
+document.getElementById("4x4").addEventListener("click", () => {
+    clickedEvent("444");
+});
+
+document.getElementById("5x5").addEventListener("click", () => {
+    clickedEvent("555");
+});
+
+document.getElementById("6x6").addEventListener("click", () => {
+    clickedEvent("666");
+});
+
+document.getElementById("7x7").addEventListener("click", () => {
+    clickedEvent("777");
+});
+
+document.getElementById("3bld").addEventListener("click", () => {
+    clickedEvent("333bf");
+});
+
+document.getElementById("oh").addEventListener("click", () => {
+    clickedEvent("333oh");
+});
+
+document.getElementById("mega").addEventListener("click", () => {
+    clickedEvent("minx");
+});
+
+document.getElementById("pyra").addEventListener("click", () => {
+    clickedEvent("pyram");
+});
+
+document.getElementById("skewb").addEventListener("click", () => {
+    clickedEvent("skewb");
+});
+
+document.getElementById("squan").addEventListener("click", () => {
+    clickedEvent("sq1");
+});
+
+document.getElementById("4bld").addEventListener("click", () => {
+    clickedEvent("444bf");
+});
+
+document.getElementById("5bld").addEventListener("click", () => {
+    clickedEvent("555bf");
+});
+
+function clickedEvent(event){
+    eventPR = prs.find(item => item.eventId === event)
+    if(!eventPR){
+        return;
+    }
+    eventSelect.style.display = "none";
+    topH2.textContent = "PR:";
+    prInput.value = formatTime(eventPR.best);
+    prValue = eventPR.best;
+    prForm.style.display = "block";
+    prInput.readOnly = true;
+    timesH2.style.display = "block";
+    timesContainer.style.display = "flex";
+    bpaH2.style.display = "block";
+    wpaH2.style.display = "block";
+    needToBeatH2.style.display = "block";
+    averageH2.textContent = "AO5: None";
+    averageH2.style.display = "block";
+    idModeButton.style.display = "none";
+
+    if(event === "666" || event === "777" || event === "444bf" || event === "555bf"){
+        timeInput4.style.display = "none";
+        timeInput5.style.display = "none";
+        bpaH2.style.display = "none";
+        wpaH2.style.display = "none";
+        averageH2.textContent = "MO3: None";
+        format = "mo3";
+    }
+    else{
+        format = "ao5";
+    }
+}
+
+idInput.addEventListener("submit", () => {
+    localStorage.setItem("id", idInput.value);
+    id = idInput.value;
+    getPRs();
+    showEventList();
+});
+
+idInput.addEventListener("keydown", (event) => {
+    if(event.key === "Enter"){
+        localStorage.setItem("id", idInput.value);
+        id = idInput.value;
+        getPRs();
+        showEventList();
+    }
+});
+
+idButton.addEventListener("click", () => {
+    localStorage.setItem("id", idInput.value);
+    id = idInput.value;
+    getPRs();
+    showEventList();
+});
 
 prForm.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -48,46 +207,43 @@ function focusNextInput(currentInput) {
     if (currentIndex !== -1 && currentIndex < visibleInputs.length - 1) {
         visibleInputs[currentIndex + 1].focus();
     }
+    else {
+        currentInput.blur();
+    }
 }
 
 prInput.addEventListener("input", () => {
     prValue = formatTimeField(prInput);
-    console.log("PR Value:", prValue);
     update();
 });
 
 timeInput1.addEventListener("input", () => {
     const timeValue = formatTimeField(timeInput1);
     times[0] = timeValue;
-    console.log("Time 1 Value:", timeValue);
     update();
 });
 
 timeInput2.addEventListener("input", () => {
     const timeValue = formatTimeField(timeInput2);
     times[1] = timeValue;
-    console.log("Time 2 Value:", timeValue);
     update();
 });
 
 timeInput3.addEventListener("input", () => {
     const timeValue = formatTimeField(timeInput3);
     times[2] = timeValue;
-    console.log("Time 3 Value:", timeValue);
     update();
 });
 
 timeInput4.addEventListener("input", () => {
     const timeValue = formatTimeField(timeInput4);
     times[3] = timeValue;
-    console.log("Time 4 Value:", timeValue);
     update();
 });
 
 timeInput5.addEventListener("input", () => {
     const timeValue = formatTimeField(timeInput5);
     times[4] = timeValue;
-    console.log("Time 5 Value:", timeValue);
     update();
 });
 
@@ -130,6 +286,20 @@ function formatTime(time) {
     }
 }
 
+idModeButton.addEventListener("click", () => {
+    ao5Button.style.display = "none";
+    mo3Button.style.display = "none";
+    idModeButton.style.display = "none";
+    if(id){
+        showEventList();
+    }
+    else{
+    topH2.textContent = "Enter WCA ID:";
+    idInput.style.display = "block";
+    idButton.style.display = "block";
+    }
+});
+
 ao5Button.addEventListener("click", () => {
     ao5Button.style.display = "none";
     mo3Button.style.display = "none";
@@ -142,6 +312,7 @@ ao5Button.addEventListener("click", () => {
     needToBeatH2.style.display = "block";
     averageH2.textContent = "AO5: None";
     averageH2.style.display = "block";
+    idModeButton.style.display = "none";
     format = "ao5";
 });
 
@@ -157,6 +328,7 @@ mo3Button.addEventListener("click", () => {
     needToBeatH2.style.display = "block";
     averageH2.textContent = "MO3: None";
     averageH2.style.display = "block";
+    idModeButton.style.display = "none";
     format = "mo3";
 });
 
@@ -164,7 +336,6 @@ function update() {
     if (prValue !== null) {
         if (format === "ao5") {
             const validTimes = times.filter((time) => (time !== undefined && time !== 0));
-            console.log("Valid Times:", validTimes);
             const sortedTimes = [...validTimes].sort((a, b) => a - b);
             if (validTimes.length === 5) {
                 const middleThree = sortedTimes.slice(1, 4);
