@@ -52,7 +52,7 @@ h2{
 #id-mode-button{
     background-color: rgb(32,32,32);
     color: white;
-    width: min(44rem, 90%);
+    width: min(44rem, 100%);
     max-width: 100%;
     min-width: 0;
     box-sizing: border-box;
@@ -98,9 +98,9 @@ h2{
 
 #event-select{
     grid-template-columns: 1fr 1fr 1fr;
-    margin: 0 20vw;
+    margin: 0 10vw;
     height: auto;
-    width: 60vw;
+    width: 80vw;
 }
 
 .event-button{
