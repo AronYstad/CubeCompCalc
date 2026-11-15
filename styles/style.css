@@ -37,24 +37,24 @@ h2{
 .format-buttons{
     display: flex;
     justify-content: center;
-    gap: 2em;
+    gap: 4rem;
 }
 
 .format-button{
     background-color: rgb(32,32,32);
     color: white;
-    width: 10em;
-    height: 5em;
-    font-size: 2em;
+    width: 20rem;
+    height: 10rem;
+    font-size: 2rem;
     border: 1px solid white;
 }
 
 #id-mode-button{
     background-color: rgb(32,32,32);
     color: white;
-    width: 21em;
-    height: 5em;
-    font-size: 2em;
+    width: 44rem;
+    height: 10rem;
+    font-size: 2rem;
     border: 1px solid white;
 }
 
@@ -95,7 +95,7 @@ h2{
 
 #event-select{
     grid-template-columns: 1fr 1fr 1fr;
-    margin: 0 20vh;
+    margin: 0 20vw;
     height: auto;
 }
 
